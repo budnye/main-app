@@ -7,6 +7,7 @@ import ClientForm from './components/ClientForm';
 import ProductsList from './components/ProductsList';
 import ProductsForm from './components/ProductsForm';
 import OrdersList from './components/OrdersList';
+import OrderForm from './components/OrderForm';
 
 function Routes() {
   return (
@@ -67,14 +68,14 @@ function Routes() {
           path="/orders/register"
           exact
           layout={MainLayout}
-          component={OrdersList}
+          component={OrderForm}
         />
 
         <RouteWithLayout
           path="/orders/:id"
           exact
           layout={MainLayout}
-          component={OrdersList}
+          component={OrderForm}
         />
       </Switch>
     </BrowserRouter>
