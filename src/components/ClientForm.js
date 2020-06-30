@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { FaUsers } from 'react-icons/fa';
 import PropTypes from 'prop-types';
-import { Input } from 'reactstrap';
+import { Input, Label } from 'reactstrap';
 import { parseISO } from 'date-fns';
 import { Container, BaseButton, Form } from './shared';
 import { mainApi } from '../services/api';
@@ -81,6 +81,7 @@ class ClientForm extends Component {
             Clientes
           </h1>
           <Form onSubmit={this.handleSubmit}>
+            <Label for="name">Nome</Label>
             <Input
               type="text"
               placeholder="Digite o nome do usuário"
@@ -89,6 +90,8 @@ class ClientForm extends Component {
               name="name"
             />
             <br />
+            <Label for="email">E-mail</Label>
+
             <Input
               type="email"
               placeholder="Digite o e-mail do usuário"
@@ -97,6 +100,8 @@ class ClientForm extends Component {
               name="email"
             />
             <br />
+            <Label for="birth">Nascimento</Label>
+
             <Input
               type="date"
               placeholder="Digite a data de nascimento do usuário"

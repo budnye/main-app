@@ -35,10 +35,7 @@ class OrderForm extends Component {
       clients: getClients.data,
       products: getProducts.data,
     });
-    console.log(this.state.orderId);
-    console.log('out');
     if (this.state.orderId > 0) {
-      console.log('inside');
       const response = await orderApi.get(`/orders/${this.state.orderId}`);
       const { dueDate, client, products } = response.data;
       const formatedDate = formatDate(dueDate);
@@ -78,6 +75,7 @@ class OrderForm extends Component {
 
   render() {
     const { clients } = this.state;
+    console.log(this.state.client.id);
     return (
       <>
         <Container>
@@ -97,23 +95,16 @@ class OrderForm extends Component {
               type="select"
               placeholder="Selecione o cliente"
               value={this.state.client.id}
+              defaultValue="5"
               onChange={this.handleChange}
               name="client"
             >
               {clients.map((client) => {
-                return <option value="client.id">{client.name}</option>;
-              })}
-            </Input>
-            <br />
-            <Input
-              type="select"
-              placeholder="Selecione o produto"
-              value={this.state.products}
-              onChange={this.handleChange}
-              name="products"
-            >
-              {clients.map((client) => {
-                return <option value="client.id">{client.name}</option>;
+                return (
+                  <option key="client.id" value="client.id">
+                    {client.name}
+                  </option>
+                );
               })}
             </Input>
             <br />

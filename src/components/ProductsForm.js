@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { FaShoppingBasket } from 'react-icons/fa';
 import PropTypes from 'prop-types';
-import { Input } from 'reactstrap';
+import { Input, Label } from 'reactstrap';
 import { Container, BaseButton, Form } from './shared';
 import { mainApi } from '../services/api';
 
@@ -42,11 +42,8 @@ class ProductsForm extends Component {
       qnt: this.state.qnt,
     };
     const response = await mainApi.post('/products', product);
-    this.setState({ name: '', info: '', price: '', qnt: 0 });
-    if (!response) {
-      return alert(`Houve um erro de servidor!`);
-    }
-    if (response.status === 201) {
+    this.setState({ name: '', info: '', price: '', qnt: '' });
+    if (response.status === 201 && response.data) {
       return alert('Produto cadastrado com sucesso.');
     }
     return alert(`Houve um erro: ${response.error}`);
@@ -61,6 +58,8 @@ class ProductsForm extends Component {
             Produtos
           </h1>
           <Form onSubmit={this.handleSubmit}>
+            <Label for="name">Nome</Label>
+
             <Input
               type="text"
               placeholder="Digite o nome do produto"
@@ -69,6 +68,8 @@ class ProductsForm extends Component {
               name="name"
             />
             <br />
+            <Label for="info">Descrição</Label>
+
             <Input
               type="text"
               placeholder="Digite a descrição"
@@ -77,6 +78,8 @@ class ProductsForm extends Component {
               name="info"
             />
             <br />
+            <Label for="price">Preço</Label>
+
             <Input
               type="number"
               placeholder="Digite o preço"
@@ -85,6 +88,8 @@ class ProductsForm extends Component {
               name="price"
             />
             <br />
+            <Label for="qnt">Quantidade</Label>
+
             <Input
               type="number"
               placeholder="Digite a quantidade"
@@ -93,8 +98,8 @@ class ProductsForm extends Component {
               name="qnt"
             />
             <br />
-
-            <BaseButton type="submit">Adicionar</BaseButton>
+            <BaseButton type="submit">Salvar</BaseButton>
+            <br />
           </Form>
         </Container>
       </>
